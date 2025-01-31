@@ -1,0 +1,47 @@
+{
+  "canisters": {
+    "main": "src/post_canister/main.rs",
+    "type": "rust",
+    "build": "cargo build --target wasm32-unknown-unknown --release --package post_canister",
+    "candid": "src/post_canister/post_canister.did", "dependencies": []
+  },
+    "profile_canister": {
+      "main": "src/profile_canister/main.rs",
+      "type": "rust",
+      "build": "cargo build --target wasm32-unknown-unknown -- release --package profile_canister",
+      "candid": "src/profile_canister/profile_canister.did", "dependencies": []
+    },
+  "transaction_canister": {
+    "main": "src/transaction_canister/main.rs",
+    "type": "rust",
+    "build": "cargo build --target wasm32-unknown-unknown --release --package transaction_canister",
+    "candid": "src/transaction_canister.did", "dependencies": []
+  },
+  "receipt_canister": {
+    "main": "src/receipt_canister/main.rs",
+    "type": "rust",
+    "build": "cargo build --target wasm32-unknown-unknown --release --package receipt_canister",
+    "candid": "src/receipt_canister/receipt_canister.did", "dependencies": ["notification_canister"]
+  },
+  "notification_canister": {
+    "main": "src/notification_canister/main.rs",
+    "type": "rust",
+    "build": "cargo build --target wasm32-unknown-unknown --release --package notification_canister",
+    "candid": "src/notification_canister/notification_canister_did", "dependencies": []
+  }
+},
+"defaults": {
+  "build": {
+    "args": "",
+    "output": "{project_root}/target/wasm32-unknown-unknown/release/{canister_name}.wasm"
+  }
+},
+"version": 1,
+"networks": {
+  "local": {
+    "bind": "127.0.0.1:8000",
+    "type": "ephemeral"
+  }
+},
+"output_env_file": ".env"
+}
